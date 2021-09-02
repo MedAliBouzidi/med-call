@@ -1,6 +1,6 @@
 <div class="container h-100">
-  <app-navbar></app-navbar>
-  <app-sidebar [hidden]="this.router.url == '/login'"></app-sidebar>
+  <app-navbar [hidden]="this.router.url == '/login' || this.router.url == '/register'"></app-navbar>
+  <app-sidebar [hidden]="this.router.url == '/login' || this.router.url == '/register'"></app-sidebar>
   <div class="row align-items-center h-100">
     <div class="col-11 mx-auto">
       <router-outlet></router-outlet>

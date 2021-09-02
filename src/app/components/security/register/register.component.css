@@ -1,0 +1,6 @@
+.med-bg-img {
+  background-image: url("src/assets/img/medicine.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
