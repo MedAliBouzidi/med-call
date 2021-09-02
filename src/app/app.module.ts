@@ -9,6 +9,7 @@ import { SidebarComponent } from './components/layouts/sidebar/sidebar.component
 import { LoginComponent } from './components/security/login/login.component';
 import { RegisterComponent } from './components/security/register/register.component';
 import { ForgetPasswordComponent } from './components/security/forget-password/forget-password.component';
+import { HomePageComponent } from './components/home/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ForgetPasswordComponent } from './components/security/forget-password/f
     SidebarComponent,
     LoginComponent,
     RegisterComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
