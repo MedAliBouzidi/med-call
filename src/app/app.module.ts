@@ -10,6 +10,7 @@ import { LoginComponent } from './components/security/login/login.component';
 import { RegisterComponent } from './components/security/register/register.component';
 import { ForgetPasswordComponent } from './components/security/forget-password/forget-password.component';
 import { HomePageComponent } from './components/home/home-page/home-page.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HomePageComponent } from './components/home/home-page/home-page.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
