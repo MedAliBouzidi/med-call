@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormGroupDirective, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from "../../../service/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -9,15 +10,16 @@ import { FormBuilder, FormGroup, FormGroupDirective, Validators } from "@angular
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-  userRole = ['PATIENT', 'PRO_SANTE', 'ADMIN']
+  userRole = ['Patient', 'Health Professional', 'Administrator']
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService,
   ) {
     this.registerForm = this.fb.group({
       username: ['', [
         Validators.required,
-        Validators.pattern("^[a-z][a-z0-9_]{7,29}$")
+        Validators.pattern("^[a-z][a-z0-9_]{5,29}$")
       ]],
       fullName: ['', [
         Validators.required,
@@ -56,15 +58,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
-    console.log(this.registerForm.value['username'])
-    console.log(this.registerForm.value['fullName'])
-    console.log(this.registerForm.value['email'])
-    console.log(this.registerForm.value['password'])
-    console.log(this.registerForm.value['confirmPassword'])
-    console.log(this.registerForm.value['address'])
-    console.log(this.registerForm.value['phone'])
-    console.log(this.registerForm.value['speciality'])
-    console.log(this.registerForm.value['cin'])
-    console.log(this.registerForm.value['userRole'])
+    this.authService.registerUser(this.registerForm.value)
   }
 }
