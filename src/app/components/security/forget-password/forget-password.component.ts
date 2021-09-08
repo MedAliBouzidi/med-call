@@ -11,7 +11,7 @@ export class ForgetPasswordComponent implements OnInit {
   resetPasswordForm = this.fb.group({
     email: ['', [
       Validators.required,
-      Validators.email
+      Validators.pattern("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
     ]]
   });
 
@@ -22,8 +22,8 @@ export class ForgetPasswordComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  resetPassword(form: FormGroupDirective) {
-    console.log(form.value.email)
+  resetPassword() {
+    console.log(this.resetPasswordForm.value.email)
   }
 
 }
