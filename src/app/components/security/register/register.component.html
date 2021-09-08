@@ -2,49 +2,165 @@
   <div class="row g-0">
     <div class="col-md-8">
       <div class="card-body p-5">
-        <form action="http://dreamguys.co.in/preclinic/template/index.html" class="form-signup">
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
           <div class="account-logo">
             <img src="assets/img/logo-dark.png" alt="">
           </div>
           <div class="form-group row">
             <div class="col">
               <label>Username</label>
-              <input type="text" autofocus="" class="form-control">
+              <input formControlName="username" type="text" autofocus="" class="form-control"
+                     [class.is-invalid]="registerForm.controls['username'].touched && registerForm.controls['username'].invalid">
+              <div *ngIf="registerForm.controls['username'].touched" class="text-danger">
+                <ul>
+                  <li *ngIf="registerForm.controls['username'].hasError('required')">
+                    Username is required
+                  </li>
+                  <li *ngIf="registerForm.controls['username'].hasError('pattern')">
+                    Username content only: [a..z] [A..Z] [0..9] or _
+                  </li>
+                </ul>
+              </div>
             </div>
             <div class="col">
               <label>Full Name</label>
-              <input type="text" autofocus="" class="form-control">
+              <input formControlName="fullName" type="text" autofocus="" class="form-control"
+                     [class.is-invalid]="registerForm.controls['fullName'].touched && registerForm.controls['fullName'].invalid">
+              <div *ngIf="registerForm.controls['fullName'].touched" class="text-danger">
+                <ul>
+                  <li *ngIf="registerForm.controls['fullName'].hasError('required')">
+                    Full Name is required
+                  </li>
+                  <li *ngIf="registerForm.controls['fullName'].hasError('pattern')">
+                    Full Name content only alphabet
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="form-group justify-content-center">
             <label>Email</label>
-            <input type="text" autofocus="" class="form-control">
+            <input formControlName="email" type="email" autofocus="" class="form-control"
+                   [class.is-invalid]="registerForm.controls['email'].touched && registerForm.controls['email'].invalid">
+            <div *ngIf="registerForm.controls['email'].touched" class="text-danger">
+              <ul>
+                <li *ngIf="registerForm.controls['email'].hasError('required')">
+                  Email is required
+                </li>
+                <li *ngIf="registerForm.controls['email'].hasError('pattern')">
+                  Email pattern invalid
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="form-group row">
             <div class="col">
               <label>Password</label>
-              <input type="password" class="form-control">
+              <input formControlName="password" type="password" class="form-control"
+                     [class.is-invalid]="registerForm.controls['password'].touched && registerForm.controls['password'].invalid">
+              <div *ngIf="registerForm.controls['password'].touched" class="text-danger">
+                <ul>
+                  <li *ngIf="registerForm.controls['password'].hasError('required')">
+                    Password is required
+                  </li>
+                  <li
+                    *ngIf="registerForm.controls['password'].hasError('minlength') || registerForm.controls['password'].hasError('maxlength')">
+                    Password length between 8 and 15
+                  </li>
+                </ul>
+              </div>
             </div>
             <div class="col">
               <label>Confirm Password</label>
-              <input type="password" class="form-control">
+              <input formControlName="confirmPassword" type="password" class="form-control"
+                     [class.is-invalid]="registerForm.controls['confirmPassword'].touched && registerForm.value['password'] != registerForm.value['confirmPassword']">
+              <div *ngIf="registerForm.controls['confirmPassword'].touched" class="text-danger">
+                <ul>
+                  <li *ngIf="registerForm.controls['confirmPassword'].hasError('required')">
+                    Password is required
+                  </li>
+                  <li *ngIf="registerForm.value['password'] != registerForm.value['confirmPassword']">
+                    Input the same password
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="form-group">
-            <label>Address</label>
-            <input type="password" class="form-control">
+            <label>Role</label>
+            <select formControlName="userRole" class="form-control">
+              <option value="">Choice..</option>
+              <option *ngFor="let role of userRole" [ngValue]="userRole.indexOf(role)">{{role}}</option>
+            </select>
+            <div *ngIf="registerForm.controls['userRole'].touched" class="text-danger">
+              <ul>
+                <li *ngIf="registerForm.controls['userRole'].hasError('required')">
+                  Please choice your role
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Phone</label>
-            <input type="password" class="form-control">
-          </div>
-          <div class="form-group">
-            <label>Speciality</label>
-            <input type="password" class="form-control">
-          </div>
-          <div class="form-group">
+          <div class="form-group" *ngIf="registerForm.value['userRole'] == 2">
             <label>CIN</label>
-            <input type="password" class="form-control">
+            <input formControlName="cin" type="text" class="form-control"
+                   [class.is-invalid]="registerForm.controls['cin'].touched && registerForm.controls['cin'].invalid">
+            <div *ngIf="registerForm.controls['cin'].touched" class="text-danger">
+              <ul>
+                <li *ngIf="registerForm.controls['cin'].hasError('required')">
+                  CIN is required
+                </li>
+                <li *ngIf="registerForm.controls['cin'].hasError('pattern')">
+                  CIN start with 0 or 1 and content 8 numbers
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="wrapper" *ngIf="registerForm.value['userRole'] == 1">
+            <div class="form-group">
+              <label>Address</label>
+              <input formControlName="address" type="text" class="form-control"
+                     [class.is-invalid]="registerForm.controls['address'].touched && registerForm.controls['address'].invalid">
+              <div *ngIf="registerForm.controls['address'].touched" class="text-danger">
+                <ul>
+                  <li *ngIf="registerForm.controls['address'].hasError('required')">
+                    Address is required
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col">
+                <label>Speciality</label>
+                <input formControlName="speciality" type="text" class="form-control"
+                       [class.is-invalid]="registerForm.controls['speciality'].touched && registerForm.controls['speciality'].invalid">
+                <div *ngIf="registerForm.controls['speciality'].touched" class="text-danger">
+                  <ul>
+                    <li *ngIf="registerForm.controls['speciality'].hasError('required')">
+                      Speciality is required
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="form-group col">
+                <label>Phone</label>
+                <input formControlName="phone" type="tel" class="form-control"
+                       [class.is-invalid]="registerForm.controls['phone'].touched && registerForm.controls['phone'].invalid">
+                <div *ngIf="registerForm.controls['phone'].touched" class="text-danger">
+                  <ul>
+                    <li *ngIf="registerForm.controls['phone'].hasError('required')">
+                      Phone number is required
+                    </li>
+                    <li *ngIf="registerForm.controls['phone'].hasError('pattern')">
+                      Follow this patterns:
+                      <ul>
+                        <li>+216 ** *** ***</li>
+                        <li>00216 ** *** ***</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="form-group text-right">
             <a routerLink="/forget-password">Forgot your password?</a>
