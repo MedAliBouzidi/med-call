@@ -1,6 +1,9 @@
 <div class="container h-100">
   <app-navbar
-    [hidden]="this.router.url == '/login' || this.router.url == '/register' || this.router.url == '/forget-password'"
+    [hidden]="this.router.url == '/login'
+    || this.router.url == '/register'
+    || this.router.url == '/forget-password'
+    || this.router.url.split('?')[0] == '/register/confirm' "
   ></app-navbar>
   <!--
   <app-sidebar
