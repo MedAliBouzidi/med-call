@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,7 @@ export class AuthService {
   API_BASE_URL = "http://localhost:3000/api";
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private http: HttpClient
   ) {
   }
 
@@ -37,9 +35,7 @@ export class AuthService {
         user['cin'] = data['cin']
         break
     }
-    this.http.post(`${ this.API_BASE_URL }/register`, user).subscribe(_ => {
-      this.router.navigate(['home'])
-    })
+    return this.http.post(`${ this.API_BASE_URL }/register`, user)
   }
 
   confirmUser(_token: string) {
