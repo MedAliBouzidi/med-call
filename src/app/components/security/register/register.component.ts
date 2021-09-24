@@ -69,6 +69,7 @@ export class RegisterComponent implements OnInit {
         this.error = await res.error
       } else {
         this.error = ""
+        this.isSubmitted = true
         await this.router.navigate(['home'])
       }
     })
