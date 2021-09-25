@@ -12,7 +12,10 @@ export class RegisterComponent implements OnInit {
 
   isSubmitted = false
 
-  error: String = ""
+  error = {
+    usernameExist: null,
+    emailExist: null
+  }
 
   registerForm: FormGroup;
   roles: String[] = ['Patient', 'Health Professional', 'Administrator']
@@ -64,14 +67,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
-    this.authService.registerUser(this.registerForm.value).subscribe(async (res: any) => {
-      if (res.error) {
-        this.error = await res.error
-      } else {
-        this.error = ""
-        this.isSubmitted = true
-        await this.router.navigate(['home'])
-      }
-    })
+    this.isSubmitted = true
+    this.authService.registerUser(this.registerForm.value).subscribe(
+      (_) => {
+        this.error.usernameExist = null
+        this.error.emailExist = null
+        this.router.navigate(['login'])
+      },
+      (error) => {
+        this.error.usernameExist = error.error.usernameExist
+        this.error.emailExist = error.error.emailExist
+      })
   }
 }

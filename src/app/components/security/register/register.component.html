@@ -16,8 +16,8 @@
                   <li *ngIf="registerForm.controls['username'].hasError('required')">
                     Username is required
                   </li>
-                  <li *ngIf="this.error == 'Username Already exists!'">
-                    {{this.error}}
+                  <li *ngIf="this.error.usernameExist">
+                    {{this.error.usernameExist}}
                   </li>
                   <li *ngIf="registerForm.controls['username'].hasError('pattern')">
                     Username content only: [a..z] [A..Z] [0..9] or _
@@ -50,8 +50,8 @@
                 <li *ngIf="registerForm.controls['email'].hasError('required')">
                   Email is required
                 </li>
-                <li *ngIf="this.error == 'Email Already exists!'">
-                  {{this.error}}
+                <li *ngIf="this.error.emailExist">
+                  {{this.error.emailExist}}
                 </li>
                 <li *ngIf="registerForm.controls['email'].hasError('pattern')">
                   Email pattern invalid
