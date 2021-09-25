@@ -10,8 +10,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient
-  ) {
-  }
+  ) {}
 
   registerUser(data: any) {
     let user = {
@@ -23,17 +22,21 @@ export class AuthService {
       'phone': null,
       'speciality': null,
       'cin': null,
-      'userRole': data['userRole']
+      'roles': ""
     }
-    switch (data['userRole']) {
+    switch (data['roles']) {
       case 1:
+        user['roles'] = "PRO_SANTE"
         user['address'] = data['address']
         user['phone'] = data['phone']
         user['speciality'] = data['speciality']
         break
       case 2:
+        user['roles'] = "ADMIN"
         user['cin'] = data['cin']
         break
+      default:
+        user['roles'] = "PATIENT"
     }
     return this.http.post(`${ this.API_BASE_URL }/register`, user)
   }

@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   error: String = ""
 
   registerForm: FormGroup;
-  userRole = ['Patient', 'Health Professional', 'Administrator']
+  roles: String[] = ['Patient', 'Health Professional', 'Administrator']
 
   constructor(
     private fb: FormBuilder,
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.pattern("^(0|1)[0-9]{7}$")
       ]],
-      userRole: ['', Validators.required]
+      roles: ['', Validators.required]
     });
   }
 
