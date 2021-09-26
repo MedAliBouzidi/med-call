@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.pattern("^(0|1)[0-9]{7}$")
       ]],
-      roles: ['', Validators.required]
+      role: ['', Validators.required]
     });
   }
 
@@ -75,6 +75,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['login'])
       },
       (error) => {
+        this.isSubmitted = false
         this.error.usernameExist = error.error.usernameExist
         this.error.emailExist = error.error.emailExist
       })

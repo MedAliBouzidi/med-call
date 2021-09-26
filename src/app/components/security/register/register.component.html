@@ -94,19 +94,19 @@
           </div>
           <div class="form-group">
             <label>Role</label>
-            <select formControlName="roles" class="form-control">
+            <select formControlName="role" class="form-control">
               <option value="">Choice..</option>
               <option *ngFor="let role of roles" [ngValue]="roles.indexOf(role)">{{role}}</option>
             </select>
-            <div *ngIf="registerForm.controls['roles'].touched" class="text-danger">
+            <div *ngIf="registerForm.controls['role'].touched" class="text-danger">
               <ul>
-                <li *ngIf="registerForm.controls['roles'].hasError('required')">
+                <li *ngIf="registerForm.controls['role'].hasError('required')">
                   Please choice your role
                 </li>
               </ul>
             </div>
           </div>
-          <div class="form-group" *ngIf="registerForm.value['roles'] == 2">
+          <div class="form-group" *ngIf="registerForm.value['role'] == 2">
             <label>CIN</label>
             <input formControlName="cin" type="text" class="form-control"
                    [class.is-invalid]="registerForm.controls['cin'].touched && registerForm.controls['cin'].invalid">
@@ -121,7 +121,7 @@
               </ul>
             </div>
           </div>
-          <div class="wrapper" *ngIf="registerForm.value['roles'] == 1">
+          <div class="wrapper" *ngIf="registerForm.value['role'] == 1">
             <div class="form-group">
               <label>Address</label>
               <input formControlName="address" type="text" class="form-control"

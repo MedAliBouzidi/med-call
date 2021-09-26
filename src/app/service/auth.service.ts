@@ -30,21 +30,21 @@ export class AuthService {
       'phone': null,
       'speciality': null,
       'cin': null,
-      'roles': ""
+      'role': ""
     }
-    switch (data['roles']) {
+    switch (data['role']) {
       case 1:
-        user['roles'] = "PRO_SANTE"
+        user['role'] = "PRO_SANTE"
         user['address'] = data['address']
         user['phone'] = data['phone']
         user['speciality'] = data['speciality']
         break
       case 2:
-        user['roles'] = "ADMIN"
+        user['role'] = "ADMIN"
         user['cin'] = data['cin']
         break
       default:
-        user['roles'] = "PATIENT"
+        user['role'] = "PATIENT"
     }
     return this.http.post(`${ this.API_BASE_URL }/register`, user)
   }
