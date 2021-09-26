@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
   onRegister() {
     this.isSubmitted = true
     this.authService.registerUser(this.registerForm.value).subscribe(
-      (_) => {
+      () => {
         this.error.usernameExist = null
         this.error.emailExist = null
         this.router.navigate(['login'])

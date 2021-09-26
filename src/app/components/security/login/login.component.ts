@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroupDirective, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
+import { AuthService } from "../../../service/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -7,6 +9,10 @@ import { FormBuilder, FormGroupDirective, Validators } from "@angular/forms";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  isSubmitted = false
+
+  wrongCredentials = false
 
   loginForm = this.fb.group({
     email: ['', [
@@ -21,7 +27,9 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) {
   }
 
@@ -29,8 +37,18 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    console.log(this.loginForm.value.email)
-    console.log(this.loginForm.value.password)
+    this.isSubmitted = true
+    this.authService.loginUser(this.loginForm.value).subscribe(
+      (res: any) => {
+        this.wrongCredentials = false
+        localStorage.setItem('jwt', res.jwt)
+        this.router.navigate(['home'])
+      },
+      () => {
+        this.isSubmitted = false
+        this.wrongCredentials = true
+      }
+    )
   }
 
 }

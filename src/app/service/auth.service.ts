@@ -12,6 +12,14 @@ export class AuthService {
     private http: HttpClient
   ) {}
 
+  loginUser(value: any) {
+    let credentials = {
+      email: value.email,
+      password: value.password
+    }
+    return this.http.post(`${this.API_BASE_URL}/login`, credentials)
+  }
+
   registerUser(data: any) {
     let user = {
       'username': data['username'],
@@ -42,7 +50,6 @@ export class AuthService {
   }
 
   confirmUser(_token: string) {
-    this.http.delete(`${ this.API_BASE_URL }/register/confirm?token=${ _token }`).subscribe(_ => {
-    })
+    this.http.delete(`${ this.API_BASE_URL }/register/confirm?token=${ _token }`).subscribe(() => {})
   }
 }
