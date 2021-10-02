@@ -3,7 +3,8 @@
     [hidden]="this.router.url == '/login'
     || this.router.url == '/register'
     || this.router.url == '/forget-password'
-    || this.router.url.split('?')[0] == '/register/confirm' "
+    || this.router.url.split('?')[0] == '/register/confirm'
+    || this.router.url.split('?')[0] == '/reset-password' "
   ></app-navbar>
   <app-sidebar *ngIf="loggedUser?.role == 'ADMIN' "></app-sidebar>
 

@@ -13,6 +13,7 @@ import { HomePageComponent } from './components/home/home-page/home-page.compone
 
 import { ReactiveFormsModule } from "@angular/forms";
 import { ConfirmedComponent } from './components/confirmed/confirmed.component';
+import { ResetPasswordComponent } from './components/security/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ConfirmedComponent } from './components/confirmed/confirmed.component';
     RegisterComponent,
     ForgetPasswordComponent,
     HomePageComponent,
-    ConfirmedComponent
+    ConfirmedComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -57,7 +57,18 @@ export class AuthService {
   }
 
   confirmUser(_token: string) {
-    this.http.delete(`${ this.API_BASE_URL }/register/confirm?token=${ _token }`).subscribe(() => {})
+    this.http.delete(`${ this.API_BASE_URL }/register/confirm?token=${ _token }`).subscribe()
+  }
+
+  resetPasswordRequest(userEmail: String) {
+    let email = {
+      "email": userEmail
+    }
+    return this.http.post(`${this.API_BASE_URL}/reset-password`, email)
+  }
+
+  resetPassword(newPassword: String, _token: String) {
+    return this.http.patch(`${this.API_BASE_URL}/reset-password?token=${_token}`, newPassword)
   }
 
   async logoutUser() {
