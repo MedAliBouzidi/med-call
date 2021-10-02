@@ -5,9 +5,10 @@ import { RegisterComponent } from "./components/security/register/register.compo
 import { ForgetPasswordComponent } from "./components/security/forget-password/forget-password.component";
 import { HomePageComponent } from "./components/home/home-page/home-page.component";
 import { ConfirmedComponent } from "./components/confirmed/confirmed.component";
+import { AuthGuard } from "./guard/auth.guard";
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
+  { path: '', component: HomePageComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forget-password', component: ForgetPasswordComponent },

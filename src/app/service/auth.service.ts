@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { UserModule } from "../module/user.module";
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,14 @@ export class AuthService {
 
   API_BASE_URL = "http://localhost:3000/api";
 
+  loggedUser: UserModule
+
   constructor(
     private http: HttpClient,
     private router: Router
-  ) {}
+  ) {
+    this.loggedUser = JSON.parse(`${sessionStorage.getItem('user')}`)
+  }
 
   loginUser(value: any) {
     let credentials = {
@@ -55,8 +60,8 @@ export class AuthService {
     this.http.delete(`${ this.API_BASE_URL }/register/confirm?token=${ _token }`).subscribe(() => {})
   }
 
-  logoutUser() {
+  async logoutUser() {
     sessionStorage.clear()
-    this.router.navigate(['/'])
+    await this.router.navigate(['login'])
   }
 }

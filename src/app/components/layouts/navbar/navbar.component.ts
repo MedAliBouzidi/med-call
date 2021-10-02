@@ -16,14 +16,16 @@ export class NavbarComponent implements OnInit {
     public router: Router,
     private authService: AuthService
   ) {
-    this.loggedUser = JSON.parse(`${sessionStorage.getItem('user')}`)
+    this.loggedUser = authService.loggedUser
   }
 
   ngOnInit(): void {
   }
 
-  logOut() {
-    this.authService.logoutUser()
+  async logOut() {
+    if (confirm("Do you want to log out?")) {
+      await this.authService.logoutUser()
+    }
   }
 
 }

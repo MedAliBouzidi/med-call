@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../../../service/auth.service";
 import { Router } from "@angular/router";
+import { async } from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -41,9 +42,9 @@ export class LoginComponent implements OnInit {
     this.authService.loginUser(this.loginForm.value).subscribe(
       async (res: any) => {
         this.wrongCredentials = false
-        await sessionStorage.setItem('jwt', res.jwt)
-        await sessionStorage.setItem('user', JSON.stringify(res.user))
-        await this.router.navigate(['home'])
+        sessionStorage.setItem('jwt', res.jwt)
+        sessionStorage.setItem('user', JSON.stringify(res.user))
+        await this.router.navigate([''])
       },
       () => {
         this.isSubmitted = false
