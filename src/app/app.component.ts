@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
+import { UserModule } from "./module/user.module";
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { Router } from "@angular/router";
 })
 export class AppComponent {
   title = 'MedCall';
+  loggedUser: UserModule = JSON.parse(`${sessionStorage.getItem('user')}`)
+
   constructor(
     public router: Router
   ) {

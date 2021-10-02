@@ -5,11 +5,8 @@
     || this.router.url == '/forget-password'
     || this.router.url.split('?')[0] == '/register/confirm' "
   ></app-navbar>
-  <!--
-  <app-sidebar
-    [hidden]="this.router.url == '/login' || this.router.url == '/register' || this.router.url == '/forget-password'"
-  ></app-sidebar>
-  -->
+  <app-sidebar *ngIf="loggedUser?.role == 'ADMIN' "></app-sidebar>
+
   <div class="row align-items-center h-100">
     <div class="col-11 mx-auto">
       <router-outlet></router-outlet>

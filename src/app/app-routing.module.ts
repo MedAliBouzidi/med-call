@@ -7,12 +7,11 @@ import { HomePageComponent } from "./components/home/home-page/home-page.compone
 import { ConfirmedComponent } from "./components/confirmed/confirmed.component";
 
 const routes: Routes = [
+  { path: '', component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forget-password', component: ForgetPasswordComponent },
-  { path: 'home', component: HomePageComponent },
-  { path: 'register/confirm', component: ConfirmedComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: 'register/confirm', component: ConfirmedComponent }
 ];
 
 @NgModule({

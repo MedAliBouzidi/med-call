@@ -2,7 +2,7 @@
   <div class="header-left">
     <a href="#" class="logo">
       <img src="../../../../assets/img/logo.png" width="35" height="35" alt="">
-      <span>Preclinic</span>
+      <span>Med Call</span>
     </a>
   </div>
   <a
@@ -10,7 +10,9 @@
     id="toggle_btn" href="javascript:void(0);">
     <i class="fa fa-bars"></i>
   </a>
-  <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar">
+  <a
+    *ngIf="loggedUser?.role == 'ADMIN'"
+    id="mobile_btn" class="mobile_btn float-left" href="#sidebar">
     <i class="fa fa-bars"></i>
   </a>
   <ul class="nav user-menu float-right">
@@ -25,8 +27,29 @@
         <a class="dropdown-item" href="#">My Profile</a>
         <a class="dropdown-item" href="#">Edit Profile</a>
         <a class="dropdown-item" href="#">Settings</a>
-        <a class="dropdown-item" href="#">Logout</a>
+        <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Logout</a>
       </div>
     </li>
   </ul>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Log Out</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to log out?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="logOut()">Log out</button>
+      </div>
+    </div>
+  </div>
 </div>

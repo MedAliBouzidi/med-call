@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
     this.authService.loginUser(this.loginForm.value).subscribe(
       async (res: any) => {
         this.wrongCredentials = false
-        sessionStorage.setItem('jwt', res.jwt)
-        sessionStorage.setItem('user', JSON.stringify(res.user))
+        await sessionStorage.setItem('jwt', res.jwt)
+        await sessionStorage.setItem('user', JSON.stringify(res.user))
         await this.router.navigate(['home'])
       },
       () => {
