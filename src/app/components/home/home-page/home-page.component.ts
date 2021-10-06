@@ -14,7 +14,7 @@ export class HomePageComponent implements OnInit {
   constructor(
     private articleService: ArticleService
   ) {
-    articleService.indexArticles().subscribe(
+    this.articleService.indexArticles().subscribe(
       (res: any) => {
         this.articles = res
       }
@@ -23,7 +23,4 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
-
 }
