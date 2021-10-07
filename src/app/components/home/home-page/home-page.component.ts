@@ -9,18 +9,25 @@ import { ArticleService } from "../../../service/article.service";
 })
 export class HomePageComponent implements OnInit {
 
-  articles?: ArticleModule[]
+  articles: ArticleModule[] = []
 
   constructor(
     private articleService: ArticleService
   ) {
-    this.articleService.indexArticles().subscribe(
-      (res: any) => {
-        this.articles = res
-      }
+    articleService.indexArticles().subscribe(
+      (res) => { this.articles = res },
+      error => { console.log(error) }
     )
   }
 
   ngOnInit(): void {
+  }
+
+  goProfile(username: String) {
+    console.log(username)
+  }
+
+  readMore(id: Number) {
+    console.log(id)
   }
 }

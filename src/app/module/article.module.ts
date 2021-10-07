@@ -21,7 +21,6 @@ export class ArticleModule {
   ) {
   }
 
-
   get id(): Number {
     return this._id;
   }
