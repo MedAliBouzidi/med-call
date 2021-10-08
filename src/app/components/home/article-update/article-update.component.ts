@@ -22,7 +22,7 @@ export class ArticleUpdateComponent implements OnInit {
     private fb: FormBuilder,
     private articleService: ArticleService,
     private activatedRoute: ActivatedRoute,
-    private route: Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class ArticleUpdateComponent implements OnInit {
 
   onUpdate() {
     this.articleService.update(this.article?.id, this.article?.user?.username, this.articleUpdateForm).subscribe(
-      async _ => { await this.route.navigate([`/articles/${ this.article?.id }`]) },
+      async _ => { await this.router.navigate([`/articles/${ this.article?.id }`]) },
       error => { console.log(error) }
     )
   }

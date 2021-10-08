@@ -12,12 +12,16 @@ import { ArticleComponent } from "./components/home/article/article.component";
 import { ArticleUpdateComponent } from "./components/home/article-update/article-update.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 import { UpdateUserInfosComponent } from "./components/update-user-infos/update-user-infos.component";
+import { AddArticleComponent } from "./components/home/add-article/add-article.component";
 
 const routes: Routes = [
   // Allow Authenticated User
   { path: '', component: ArticlesComponent, canActivate: [AuthGuard] },
+    // Article Routes
+  { path: 'articles/new', component: AddArticleComponent, canActivate: [AuthGuard] },
   { path: 'articles/:id', component: ArticleComponent, canActivate: [AuthGuard] },
   { path: 'articles/:id/update', component: ArticleUpdateComponent, canActivate: [AuthGuard] },
+    // User Routes
   { path: 'profile/:username', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'profile/:username/infos', component: UpdateUserInfosComponent, canActivate: [AuthGuard] },
   // Allow Guest

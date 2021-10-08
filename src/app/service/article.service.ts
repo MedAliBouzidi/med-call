@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ArticleModule } from "../module/article.module";
 import { FormGroup } from "@angular/forms";
+import { UserModule } from "../module/user.module";
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,17 @@ export class ArticleService {
 
   destroy(articleId: Number | undefined) {
     return this.http.delete(`${this.API_BASE_URL}/${articleId}`)
+  }
+
+  store(value: any, loggedUser: UserModule | undefined) {
+    return this.http.post(
+      `${this.API_BASE_URL}/new`,
+      {
+        "title": value.title,
+        "content": value.content,
+        "speciality": value.speciality,
+        "username": loggedUser?.username
+      }
+    )
   }
 }

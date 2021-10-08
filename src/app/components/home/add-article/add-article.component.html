@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4 img-logo" src="assets/img/logo-dark.png" alt="logo">
+    <h2>Add New Article</h2>
+  </div>
+  <div class="row">
+    <div class="col order-md-1">
+      <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+        <div class="form-group justify-content-center">
+          <label>Title</label>
+          <input formControlName="title" type="text" class="form-control"
+                 [class.is-invalid]="(articleForm.controls['title'].touched && articleForm.controls['title'].invalid)">
+          <div *ngIf="articleForm.controls['title'].touched" class="text-danger">
+            <ul>
+              <li *ngIf="articleForm.controls['title'].hasError('required')">
+                Title is required
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group justify-content-center">
+          <label>Speciality</label>
+          <input formControlName="speciality" type="text" class="form-control"
+                 [class.is-invalid]="(articleForm.controls['speciality'].touched && articleForm.controls['speciality'].invalid)">
+          <div *ngIf="articleForm.controls['speciality'].touched" class="text-danger">
+            <ul>
+              <li *ngIf="articleForm.controls['speciality'].hasError('required')">
+                Speciality is required
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group justify-content-center">
+          <label>Article Content</label>
+          <textarea formControlName="content" type="text" class="form-control"
+                    [class.is-invalid]="(articleForm.controls['content'].touched && articleForm.controls['content'].invalid)"
+                    rows="10"></textarea>
+          <div *ngIf="articleForm.controls['content'].touched" class="text-danger">
+            <ul>
+              <li *ngIf="articleForm.controls['content'].hasError('required')">
+                Article Content is required
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block w-auto float-right" type="submit">Store</button>
+      </form>
+    </div>
+  </div>
+</div>
