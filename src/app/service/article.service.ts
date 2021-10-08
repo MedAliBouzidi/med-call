@@ -16,11 +16,11 @@ export class ArticleService {
   ) {
   }
 
-  indexArticles(): Observable<ArticleModule[]> {
+  index(): Observable<ArticleModule[]> {
     return this.http.get<ArticleModule[]>(`${ this.API_BASE_URL }/`)
   }
 
-  showArticle(id: any): Observable<ArticleModule> {
+  show(id: any): Observable<ArticleModule> {
     return this.http.get<ArticleModule>(`${this.API_BASE_URL}/${id}`)
   }
 

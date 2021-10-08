@@ -11,7 +11,7 @@
           <p class="card-text mb-auto">{{ article.content.slice(0, 500) }}...</p>
           <div class="w-100 font-18 mt-3 d-flex justify-content-between">
             <a class="link go-link text-primary"
-              (click)="goProfile(article.user.username)">
+              (click)="goToProfile(article.user.username)">
               {{article.user.fullName}}
             </a>
             <a class="link go-link text-primary"

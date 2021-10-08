@@ -27,7 +27,7 @@ export class ArticleUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     let articleId = this.activatedRoute.snapshot.paramMap.get('id')
-    this.articleService.showArticle(articleId).subscribe(
+    this.articleService.show(articleId).subscribe(
       res => {
         this.article = res
         this.articleUpdateForm.controls['title'].setValue(res.title)

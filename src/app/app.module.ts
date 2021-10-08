@@ -18,6 +18,7 @@ import { ArticleComponent } from './components/home/article/article.component';
 import { CommentComponent } from './components/home/comment/comment.component';
 import { ArticleUpdateComponent } from './components/home/article-update/article-update.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { UpdateUserInfosComponent } from './components/update-user-infos/update-user-infos.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     ArticleComponent,
     CommentComponent,
     ArticleUpdateComponent,
-    ProfileComponent
+    ProfileComponent,
+    UpdateUserInfosComponent
   ],
   imports: [
     BrowserModule,

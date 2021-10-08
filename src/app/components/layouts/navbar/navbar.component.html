@@ -14,9 +14,8 @@
         <span>{{ loggedUser?.fullName }}</span>
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">My Profile</a>
-        <a class="dropdown-item" href="#">Edit Profile</a>
-        <a class="dropdown-item" href="#">Settings</a>
+        <a class="dropdown-item" (click)="goToProfile()">My Profile</a>
+        <a class="dropdown-item" (click)="goToUpdateProfile()">Edit Profile</a>
         <a class="dropdown-item" (click)="logOut()">Logout</a>
       </div>
     </li>

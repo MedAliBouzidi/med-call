@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
 import { UserModule } from "../module/user.module";
 
 @Injectable({
@@ -13,8 +12,7 @@ export class AuthService {
   loggedUser: UserModule
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private http: HttpClient
   ) {
     this.loggedUser = JSON.parse(`${localStorage.getItem('user')}`)
   }

@@ -16,7 +16,7 @@ export class ArticlesComponent implements OnInit {
     private articleService: ArticleService,
     private router: Router
   ) {
-    this.articleService.indexArticles().subscribe(
+    this.articleService.index().subscribe(
       (res) => { this.articles = res },
       error => { console.log(error) }
     )
@@ -25,8 +25,8 @@ export class ArticlesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goProfile(username: String) {
-
+  async goToProfile(username: String | undefined) {
+    await this.router.navigate([`profile/${username}`])
   }
 
   async readMore(id: Number) {

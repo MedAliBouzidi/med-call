@@ -26,14 +26,14 @@ export class ArticleComponent implements OnInit {
   ngOnInit(): void {
     this.loggedUser = this.authService.loggedUser
     this.articleId = Number(this.route.snapshot.paramMap.get('id'))
-    this.articleService.showArticle(this.articleId).subscribe(
+    this.articleService.show(this.articleId).subscribe(
       res => { this.article = res },
       err => { console.log(err) }
     )
   }
 
-  goToProfile(username: String | undefined) {
-
+  async goToProfile(username: String | undefined) {
+    await this.router.navigate([`profile/${username}`])
   }
 
   async goToUpdate(id: Number | undefined) {

@@ -28,4 +28,13 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  goToProfile() {
+    this.router
+      .navigateByUrl(`profile/${this.loggedUser?.username}`)
+      .then(() => {window.location.reload()})
+  }
+
+  async goToUpdateProfile() {
+    await this.router.navigate([`profile/${this.loggedUser?.username}/infos`])
+  }
 }

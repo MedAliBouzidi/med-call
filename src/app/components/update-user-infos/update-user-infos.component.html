@@ -1,0 +1,84 @@
+<div class="shadow rounded bg-light mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-3 border-right">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <img class="rounded-circle mt-5 mb-3"
+             src="assets/img/user.jpg"
+             width="150" alt="avatar">
+        <span class="font-weight-bold">{{loggedUser?.fullName}}</span>
+        <span class="text-black-50">{{loggedUser?.email}}</span>
+      </div>
+    </div>
+    <div class="col border-right">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right">Profile Settings</h4>
+        </div>
+        <form [formGroup]="updateForm" (ngSubmit)="onUpdateInfos()">
+          <div class="form-group justify-content-center">
+            <label>Full Name</label>
+            <input formControlName="fullName" type="text" class="form-control"
+                   [class.is-invalid]="(updateForm.controls['fullName'].touched && updateForm.controls['fullName'].invalid)">
+          </div>
+          <div  *ngIf="loggedUser?.role == 'PRO_SANTE'">
+            <div class="form-group justify-content-center">
+              <label>Address</label>
+              <input formControlName="address" type="text" class="form-control"
+                     [class.is-invalid]="(updateForm.controls['address'].touched && updateForm.controls['address'].invalid)">
+            </div>
+            <div class="form-group justify-content-center">
+              <label>Speciality</label>
+              <input formControlName="speciality" type="text" class="form-control"
+                     [class.is-invalid]="(updateForm.controls['speciality'].touched && updateForm.controls['speciality'].invalid)">
+            </div>
+            <div class="form-group justify-content-center">
+              <label>Phone</label>
+              <input formControlName="phone" type="text" class="form-control"
+                     [class.is-invalid]="(updateForm.controls['phone'].touched && updateForm.controls['phone'].invalid)">
+            </div>
+          </div>
+          <div class="form-group justify-content-center" *ngIf="loggedUser?.role == 'ADMIN'">
+            <label>CIN</label>
+            <input formControlName="cin" type="text" class="form-control"
+                   [class.is-invalid]="(updateForm.controls['cin'].touched && updateForm.controls['cin'].invalid)">
+          </div>
+          <div class="mt-5 text-center">
+            <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right">Security Settings</h4>
+        </div>
+        <div *ngIf="this.error">
+          <p class="alert alert-danger">
+            You have insert the same current password
+          </p>
+        </div>
+        <form [formGroup]="passwordForm" (ngSubmit)="onUpdatePassword()">
+          <div class="form-group justify-content-center">
+            <label>Current Password</label>
+            <input formControlName="currentPassword" type="password" class="form-control"
+                   [class.is-invalid]="(passwordForm.controls['currentPassword'].touched && passwordForm.controls['currentPassword'].invalid)">
+          </div>
+          <div class="form-group justify-content-center">
+            <label>New Password</label>
+            <input formControlName="newPassword" type="password" class="form-control"
+                   [class.is-invalid]="(passwordForm.controls['newPassword'].touched && passwordForm.controls['newPassword'].invalid)">
+          </div>
+          <div class="form-group justify-content-center">
+            <label>Confirm Password</label>
+            <input formControlName="confirmPassword" type="password" class="form-control"
+                   [class.is-invalid]="(passwordForm.controls['confirmPassword'].touched && passwordForm.controls['confirmPassword'].invalid)">
+          </div>
+          <div class="mt-5 text-center">
+            <button [disabled]="passwordForm.invalid" class="btn btn-primary " type="submit">Save Password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
