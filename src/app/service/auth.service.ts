@@ -71,8 +71,8 @@ export class AuthService {
     return this.http.patch(`${this.API_BASE_URL}/reset-password?token=${_token}`, newPassword)
   }
 
-  async logoutUser() {
+  logoutUser() {
     localStorage.clear()
-    await this.router.navigate(['login'])
+    window.location.reload()
   }
 }

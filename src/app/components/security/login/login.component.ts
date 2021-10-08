@@ -39,11 +39,11 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.isSubmitted = true
     this.authService.loginUser(this.loginForm.value).subscribe(
-      async (res: any) => {
+      (res: any) => {
         this.wrongCredentials = false
         localStorage.setItem('jwt', res.jwt)
         localStorage.setItem('user', JSON.stringify(res.user))
-        await this.router.navigate([''])
+        window.location.reload()
       },
       () => {
         this.isSubmitted = false
