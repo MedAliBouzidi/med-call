@@ -32,15 +32,7 @@ export class ArticleComponent implements OnInit {
     )
   }
 
-  async goToProfile(username: String | undefined) {
-    await this.router.navigate([`profile/${username}`])
-  }
-
-  async goToUpdate(id: Number | undefined) {
-    await this.router.navigate([`/articles/${ id }/update`])
-  }
-
-  goToDelete(id: Number | undefined) {
+  onDelete(id: Number | undefined) {
     if (confirm("Do you reqlly want to delete that article?")) {
       this.articleService.destroy(id).subscribe(
         async _ => { await this.router.navigate(['']) },

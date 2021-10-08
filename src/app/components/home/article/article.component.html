@@ -6,10 +6,10 @@
           {{ article?.speciality }}
         </h3>
         <div *ngIf="article?.user?.id == loggedUser?.id" class="d-flex flex-row">
-          <a class="dropdown-item h2 text-primary" (click)="goToUpdate(article?.id)">
+          <a class="dropdown-item h2 text-primary" routerLink="/articles/{{article?.id}}/update">
             <i class="far fa-edit"></i>
           </a>
-          <a class="dropdown-item h2 text-danger" (click)="goToDelete(article?.id)">
+          <a class="dropdown-item h2 text-danger" (click)="onDelete(article?.id)">
             <i class="fas fa-trash-alt"></i>
           </a>
         </div>
@@ -52,7 +52,7 @@
                 <span class="text-secondary">{{article?.user?.address}}</span>
               </li>
             </ul>
-            <button class="btn btn-primary mt-3" (click)="goToProfile(article?.user?.username)">Profile</button>
+            <button class="btn btn-primary mt-3" routerLink="/profile/{{article?.user?.username}}">Profile</button>
           </div>
           <ng-template #roleAdmin>
             <div class="mt-3 w-75">

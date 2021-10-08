@@ -27,14 +27,4 @@ export class NavbarComponent implements OnInit {
       await this.authService.logoutUser()
     }
   }
-
-  goToProfile() {
-    this.router
-      .navigateByUrl(`profile/${this.loggedUser?.username}`)
-      .then(() => {window.location.reload()})
-  }
-
-  async goToUpdateProfile() {
-    await this.router.navigate([`profile/${this.loggedUser?.username}/infos`])
-  }
 }

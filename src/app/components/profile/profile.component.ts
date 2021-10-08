@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../service/user.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { UserModule } from "../../module/user.module";
 import { AuthService } from "../../service/auth.service";
 
@@ -18,8 +18,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -29,9 +28,5 @@ export class ProfileComponent implements OnInit {
       res => { this.user = res },
       error => { console.log(error) }
     )
-  }
-
-  async updateProfile() {
-    await this.router.navigate([`profile/${this.loggedUser?.username}/infos`])
   }
 }

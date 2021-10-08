@@ -44,14 +44,14 @@ export class CommentComponent implements OnInit {
     )
   }
 
-  goToDelete(commentId: Number) {
+  onDelete(commentId: Number) {
     this.commentService.destroy(this.articleId, commentId).subscribe(
       _ => { window.location.reload() },
       err => { console.log(err) }
     )
   }
 
-  goToUpdate(commentId: Number, newContent: String, username: String) {
+  onUpdate(commentId: Number, newContent: String, username: String) {
     this.commentService.update(this.articleId, commentId, newContent, username).subscribe(
       _ => { window.location.reload() },
       err => { console.log(err) }
