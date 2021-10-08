@@ -1,0 +1,80 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-center row">
+    <div class="col">
+      <div class="d-flex flex-column comment-section">
+        <div class="bg-white mb-1 p-2 justify-content-between d-flex" *ngFor="let comment of comments">
+          <div class="px-2 py-2">
+            <div class="d-flex flex-row user-info">
+              <img class="rounded-circle img-user"
+                   src="assets/img/user.jpg"
+                   alt="avatar"/>
+              <div class="d-flex flex-column justify-content-start ml-2">
+                <span class="d-block font-weight-bold name">{{comment.user.fullName}}</span>
+                <span class="date text-black-50">{{comment.createdAt | date: 'MMM d, y, h:mm'}}</span>
+              </div>
+            </div>
+            <div class="mt-2">
+              <p class="comment-text pl-5">
+                {{comment.content}}
+              </p>
+            </div>
+          </div>
+          <div *ngIf="comment.user.id == loggedUser?.id">
+            <div id="dropdownMenuButton"
+                 data-toggle="dropdown"
+                 aria-haspopup="true"
+                 aria-expanded="false">
+              <i class="fas fa-ellipsis-v px-2 py-2"></i>
+            </div>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a (click)="newContent=comment.content" class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter">Update</a>
+              <a class="dropdown-item" (click)="goToDelete(comment.id)">Delete</a>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Update your Comment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <textarea
+                      class="form-control ml-1 shadow-none textarea"
+                      [value]="comment.content"
+                      (input)="newContent=getNewCommentContent($event)"></textarea>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      [disabled]="comment.content==newContent"
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="goToUpdate(comment.id, newContent, comment.user.username)">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Start Post Comment -->
+        <div class="bg-light p-2">
+          <div class="d-flex flex-row align-items-start">
+            <img class="rounded-circle img-user mr-2"
+                 src="assets/img/user.jpg"
+                 alt="avatar"/>
+            <textarea class="form-control ml-1 shadow-none textarea" [value]="newComment" (input)="newComment=getNewCommentContent($event)"></textarea></div>
+          <div class="mt-2 text-right">
+            <button class="btn btn-primary btn-sm shadow-none" type="submit" (click)="storeComment()">Post comment</button>
+            <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" (click)="newComment=''" type="reset">Cancel</button>
+          </div>
+        </div>
+        <!-- End Post Comment -->
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -9,11 +9,14 @@ import { SidebarComponent } from './components/layouts/sidebar/sidebar.component
 import { LoginComponent } from './components/security/login/login.component';
 import { RegisterComponent } from './components/security/register/register.component';
 import { ForgetPasswordComponent } from './components/security/forget-password/forget-password.component';
-import { HomePageComponent } from './components/home/home-page/home-page.component';
+import { ArticlesComponent } from './components/home/articles/articles.component';
 
 import { ReactiveFormsModule } from "@angular/forms";
 import { ConfirmedComponent } from './components/confirmed/confirmed.component';
 import { ResetPasswordComponent } from './components/security/reset-password/reset-password.component';
+import { ArticleComponent } from './components/home/article/article.component';
+import { CommentComponent } from './components/home/comment/comment.component';
+import { ArticleUpdateComponent } from './components/home/article-update/article-update.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +26,12 @@ import { ResetPasswordComponent } from './components/security/reset-password/res
     LoginComponent,
     RegisterComponent,
     ForgetPasswordComponent,
-    HomePageComponent,
+    ArticlesComponent,
     ConfirmedComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ArticleComponent,
+    CommentComponent,
+    ArticleUpdateComponent
   ],
   imports: [
     BrowserModule,

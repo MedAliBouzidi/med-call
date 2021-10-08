@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4 img-logo" src="assets/img/logo-dark.png" alt="logo">
+    <h2>Update Article</h2>
+    <p class="lead">Please note that when you submit the new content the article will be hidden until the admin accept the update!</p>
+  </div>
+  <div class="row">
+    <div class="col order-md-1">
+      <form [formGroup]="articleUpdateForm" (ngSubmit)="onUpdate()">
+        <div class="form-group justify-content-center">
+          <label>Title</label>
+          <input formControlName="title" type="text" class="form-control"
+                 [class.is-invalid]="(articleUpdateForm.controls['title'].touched && articleUpdateForm.controls['title'].invalid)">
+          <div *ngIf="articleUpdateForm.controls['title'].touched" class="text-danger">
+            <ul>
+              <li *ngIf="articleUpdateForm.controls['title'].hasError('required')">
+                Title is required
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group justify-content-center">
+          <label>Speciality</label>
+          <input formControlName="speciality" type="text" class="form-control"
+                 [class.is-invalid]="(articleUpdateForm.controls['speciality'].touched && articleUpdateForm.controls['speciality'].invalid)">
+          <div *ngIf="articleUpdateForm.controls['speciality'].touched" class="text-danger">
+            <ul>
+              <li *ngIf="articleUpdateForm.controls['speciality'].hasError('required')">
+                Speciality is required
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group justify-content-center">
+          <label>Article Content</label>
+          <textarea formControlName="content" type="text" class="form-control"
+                    [class.is-invalid]="(articleUpdateForm.controls['content'].touched && articleUpdateForm.controls['content'].invalid)"
+                    rows="10"></textarea>
+          <div *ngIf="articleUpdateForm.controls['content'].touched" class="text-danger">
+            <ul>
+              <li *ngIf="articleUpdateForm.controls['content'].hasError('required')">
+                Article Content is required
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block"
+                type="submit">Continue to checkout</button>
+      </form>
+    </div>
+  </div>
+</div>

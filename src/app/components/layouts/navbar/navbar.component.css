@@ -1,3 +1,12 @@
 .dropdown-item {
   cursor: pointer;
 }
+
+.img-logo {
+  width: 35px;
+  height: 35px;
+}
+
+.img-user {
+  width: 24px;
+}

@@ -1,0 +1,75 @@
+<main role="main">
+  <div class="row">
+    <div class="col-md-8 blog-main">
+      <div class="pb-3 mb-4 font-italic border-bottom justify-content-between d-flex">
+        <h3>
+          {{ article?.speciality }}
+        </h3>
+        <div *ngIf="article?.user?.id == loggedUser?.id" class="d-flex flex-row">
+          <a class="dropdown-item h2 text-primary" (click)="goToUpdate(article?.id)">
+            <i class="far fa-edit"></i>
+          </a>
+          <a class="dropdown-item h2 text-danger" (click)="goToDelete(article?.id)">
+            <i class="fas fa-trash-alt"></i>
+          </a>
+        </div>
+      </div>
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{ article?.title }}</h2>
+        <p class="blog-post-meta">
+          {{article?.createdAt | date: 'MMM d, y, h:mm'}}
+          <a href="#">{{article?.user?.fullName}}</a>
+        </p>
+
+        <p>{{article?.content}}</p>
+      </div><!-- /.blog-post -->
+      <!-- Start Comment Area -->
+      <app-comment></app-comment>
+      <!-- End Comment Area -->
+    </div><!-- /.blog-main -->
+
+    <aside class="col-md-4 blog-sidebar">
+      <div class="card shadow w-75 ml-5">
+        <div class="card-body d-flex flex-column align-items-center text-center">
+          <img src="assets/img/user.jpg" alt="Admin" class="rounded-circle" width="150">
+          <div class="mt-3 w-75" *ngIf="article?.user?.role != 'ADMIN'; else roleAdmin">
+            <h4>{{article?.user?.fullName}}</h4>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0"><i class="fas fa-user-md"></i></h6>
+                <span class="text-secondary">{{article?.user?.speciality}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0"><i class="fas fa-at"></i></h6>
+                <span class="text-secondary">{{article?.user?.email}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0"><i class="fas fa-mobile-alt"></i></h6>
+                <span class="text-secondary">{{article?.user?.phone}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0"><i class="fas fa-map-marked-alt"></i></h6>
+                <span class="text-secondary">{{article?.user?.address}}</span>
+              </li>
+            </ul>
+            <button class="btn btn-primary mt-3" (click)="goToProfile(article?.user?.username)">Profile</button>
+          </div>
+          <ng-template #roleAdmin>
+            <div class="mt-3 w-75">
+              <h4>{{article?.user?.fullName}}</h4>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-around align-items-center flex-wrap">
+                  <i class="fas fa-user-shield"></i>
+                  <p class="text-secondary mb-1">{{article?.user?.role}}</p>
+                </li>
+              </ul>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </aside><!-- /.blog-sidebar -->
+
+  </div><!-- /.row -->
+
+</main>
+

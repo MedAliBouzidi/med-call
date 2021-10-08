@@ -16,7 +16,7 @@ export class AuthService {
     private http: HttpClient,
     private router: Router
   ) {
-    this.loggedUser = JSON.parse(`${sessionStorage.getItem('user')}`)
+    this.loggedUser = JSON.parse(`${localStorage.getItem('user')}`)
   }
 
   loginUser(value: any) {
@@ -57,7 +57,7 @@ export class AuthService {
   }
 
   confirmUser(_token: string) {
-    this.http.delete(`${ this.API_BASE_URL }/register/confirm?token=${ _token }`).subscribe()
+    this.http.delete(`${ this.API_BASE_URL }/register/confirm?token=${ _token }`)
   }
 
   resetPasswordRequest(userEmail: String) {
@@ -72,7 +72,7 @@ export class AuthService {
   }
 
   async logoutUser() {
-    sessionStorage.clear()
+    localStorage.clear()
     await this.router.navigate(['login'])
   }
 }

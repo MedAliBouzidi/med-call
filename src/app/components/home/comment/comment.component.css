@@ -1,0 +1,7 @@
+#dropdownMenuButton, .dropdown-item {
+  cursor: pointer;
+}
+
+.img-user {
+  width: 40px;
+}

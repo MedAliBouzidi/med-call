@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleModule } from "../../../module/article.module";
 import { ArticleService } from "../../../service/article.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  templateUrl: './articles.component.html',
+  styleUrls: ['./articles.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class ArticlesComponent implements OnInit {
 
   articles: ArticleModule[] = []
 
   constructor(
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private router: Router
   ) {
-    articleService.indexArticles().subscribe(
+    this.articleService.indexArticles().subscribe(
       (res) => { this.articles = res },
       error => { console.log(error) }
     )
@@ -24,10 +26,10 @@ export class HomePageComponent implements OnInit {
   }
 
   goProfile(username: String) {
-    console.log(username)
+
   }
 
-  readMore(id: Number) {
-    console.log(id)
+  async readMore(id: Number) {
+    await this.router.navigate([`/articles/${ id }`])
   }
 }
